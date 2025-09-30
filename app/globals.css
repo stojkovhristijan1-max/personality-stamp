@@ -1,0 +1,334 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #e0e7ff;
+  --neon-silver: #c0d5ff;
+  --neon-blue: #4d7cff;
+  --space-blue: #0a1628;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #e0e7ff;
+}
+
+body {
+  color: var(--foreground);
+  background: linear-gradient(135deg, #000000 0%, #0a1628 50%, #000814 100%);
+  background-attachment: fixed;
+  font-family: 'Orbitron', 'Rajdhani', 'Exo 2', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Floating robot animation */
+.robot-container {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  opacity: 0.85;
+}
+
+@keyframes robotFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.robot-float {
+  animation: robotFloat 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(77,124,255,0.6)) drop-shadow(0 0 16px rgba(37,99,235,0.35));
+}
+
+/* Animated starfield background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 50px 50px, #ddd, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 90px 10px, #eee, transparent);
+  background-size: 200px 200px;
+  background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+  animation: starfield 120s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes starfield {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+
+/* Neon glow effect */
+.neon-text {
+  color: #c0d5ff;
+  text-shadow: 
+    0 0 5px #4d7cff,
+    0 0 10px #4d7cff,
+    0 0 20px #4d7cff,
+    0 0 40px #2563eb,
+    0 0 80px #2563eb;
+  animation: neonFlicker 3s infinite alternate;
+}
+
+@keyframes neonFlicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      0 0 5px #4d7cff,
+      0 0 10px #4d7cff,
+      0 0 20px #4d7cff,
+      0 0 40px #2563eb,
+      0 0 80px #2563eb;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+/* Neon border glow */
+.neon-border {
+  border: 2px solid #4d7cff;
+  box-shadow: 
+    0 0 5px #4d7cff,
+    0 0 10px #4d7cff,
+    0 0 20px #2563eb,
+    inset 0 0 5px #4d7cff,
+    inset 0 0 10px #2563eb;
+  animation: borderPulse 2s ease-in-out infinite;
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 5px #4d7cff,
+      0 0 10px #4d7cff,
+      0 0 20px #2563eb,
+      inset 0 0 5px #4d7cff,
+      inset 0 0 10px #2563eb;
+  }
+  50% {
+    box-shadow: 
+      0 0 10px #4d7cff,
+      0 0 20px #4d7cff,
+      0 0 30px #2563eb,
+      inset 0 0 10px #4d7cff,
+      inset 0 0 20px #2563eb;
+  }
+}
+
+/* Cyber grid background */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(77, 124, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 124, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridScroll 20s linear infinite;
+}
+
+@keyframes gridScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* Holographic effect */
+.holographic {
+  background: linear-gradient(135deg, 
+    rgba(77, 124, 255, 0.2) 0%,
+    rgba(192, 213, 255, 0.1) 25%,
+    rgba(77, 124, 255, 0.2) 50%,
+    rgba(192, 213, 255, 0.1) 75%,
+    rgba(77, 124, 255, 0.2) 100%);
+  background-size: 200% 200%;
+  animation: holographicShift 3s ease infinite;
+}
+
+@keyframes holographicShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Glitch effect */
+.glitch {
+  animation: glitch 1s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Scan line effect */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.scanline::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(transparent, #4d7cff, transparent);
+  animation: scanline 4s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.3;
+}
+
+/* Futuristic button glow */
+.cyber-button {
+  position: relative;
+  background: rgba(77, 124, 255, 0.1);
+  border: 2px solid #4d7cff;
+  color: #c0d5ff;
+  text-shadow: 0 0 10px #4d7cff;
+  box-shadow: 
+    0 0 5px #4d7cff,
+    0 0 10px #4d7cff,
+    inset 0 0 5px rgba(77, 124, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.cyber-button:hover {
+  background: rgba(77, 124, 255, 0.2);
+  box-shadow: 
+    0 0 10px #4d7cff,
+    0 0 20px #4d7cff,
+    0 0 30px #2563eb,
+    inset 0 0 10px rgba(77, 124, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #4d7cff, #2563eb, #4d7cff);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.cyber-button:hover::before {
+  opacity: 0.5;
+  animation: borderRotate 2s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulse glow animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 
+      0 0 5px #4d7cff,
+      0 0 10px #4d7cff,
+      0 0 20px #2563eb;
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 
+      0 0 10px #4d7cff,
+      0 0 20px #4d7cff,
+      0 0 40px #2563eb;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
